@@ -36,7 +36,7 @@ internal class IonPrism_Craftable
     {
         var assetPrefab = Plugin.AssetBundle.LoadAsset<GameObject>("IonPrism_Prefab");
 
-        var prefab = GameObject.Instantiate(assetPrefab);
+        var prefab = UWE.Utils.InstantiateDeactivated(assetPrefab);
         MaterialUtils.ApplySNShaders(prefab, modifiers: new ProtoMaterialModifier(3));
 
         yield return ProtoMatDatabase.ReplaceVanillaMats(prefab);
