@@ -1,0 +1,15 @@
+name: UpdateVersionFile
+'on': push
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read plugin
+        id: plugin
+        uses: PrototypeSubMod@main
+        with:
+          branch: main
+          path: Path.cs
+      
+      - name: Echo plugin
+        run: echo "${{ steps.plugin.outputs.content }}"
