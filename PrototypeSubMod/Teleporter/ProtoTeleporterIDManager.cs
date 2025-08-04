@@ -48,6 +48,7 @@ public class ProtoTeleporterIDManager : MonoBehaviour, ISaveDataListener
     private void OnEnable()
     {
         TeleporterManager.TeleporterActivateEvent += OnTeleporterActivated;
+        RefreshLocationList();
     }
 
     private void OnDisable()
