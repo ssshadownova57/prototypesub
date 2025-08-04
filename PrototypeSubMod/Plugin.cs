@@ -25,6 +25,7 @@ using PrototypeSubMod.Prefabs;
 using PrototypeSubMod.Prefabs.AlienBuildingBlock;
 using PrototypeSubMod.VehicleAccess;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UWE;
 
 namespace PrototypeSubMod
@@ -238,18 +239,26 @@ namespace PrototypeSubMod
         private IEnumerator LazyInitialize()
         {
             if (AssetBundle != null) yield break;
+
+            Logger.LogDebug($"Started loading asset bundle");
             
             var task = AssetBundle.LoadFromFileAsync(Path.Combine(AssetsFolderPath, "prototypeassets"));
             yield return task;
             AssetBundle = task.assetBundle;
+            
+            Logger.LogDebug($"Asset bundle loaded");
             
             LoadPathfindingGrid();
             
             PrototypePingType = EnumHandler.AddEntry<PingType>("PrototypeSub")
                 .WithIcon(AssetBundle.LoadAsset<Sprite>("Proto_HUD_Marker"));
             
+            Logger.LogDebug($"Set ping type");
+            
             PrefabRegisterer.Register();
+            Logger.LogDebug($"Loaded normal prefabs");
             yield return LoadEasyPrefabs.LoadPrefabs(AssetBundle, EncyEntryRegisterer.Register, GC.Collect, GC.WaitForPendingFinalizers);
+            Logger.LogDebug($"Loaded easy prefabs");
             
             PrototypePowerSystem.AllowedPowerSources = new()
             {
@@ -262,12 +271,17 @@ namespace PrototypeSubMod
             };
             
             ROTACompatManager.AddCompatiblePowerSources();
-
-            yield return AddBatteryComponents();
+            Logger.LogDebug($"Setup power sources");
+            
+            yield return EnsureBatteryComponents();
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            Logger.LogDebug($"Setup power source prefabs");
             PrefabsInitialized = true;
             
             StructureRegisterer.Register();
             StructuresRegistered = true;
+            
+            Logger.LogDebug($"Structures registered");
             
             StoryGoalsRegisterer.Register();
             BiomeRegisterer.Register();
@@ -275,8 +289,15 @@ namespace PrototypeSubMod
             CommandRegisterer.Register();
             MiscellaneousRegistered = true;
         }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name != "MenuEnvironment") return;
+
+            UWE.CoroutineHost.StartCoroutine(EnsureBatteryComponents());
+        }
         
-        private IEnumerator AddBatteryComponents()
+        private IEnumerator EnsureBatteryComponents()
         {
             foreach (var kvp in PrototypePowerSystem.AllowedPowerSources)
             {
@@ -284,7 +305,7 @@ namespace PrototypeSubMod
                 yield return prefabTask;
 
                 GameObject prefab = prefabTask.result.Get();
-                prefab.AddComponent<PrototypePowerBattery>();
+                prefab.EnsureComponent<PrototypePowerBattery>();
             }
         }
 

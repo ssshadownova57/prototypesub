@@ -26,7 +26,7 @@ public class BuildingBlockManager : MonoBehaviour
         if (LargeWorld.main)
             spawnBiome = LargeWorld.main.GetBiome(transform.position);
 
-        blockMaterial = gameObject.GetComponentInChildren<MeshRenderer>().materials[0];
+        blockMaterial = gameObject.GetComponentInChildren<MeshRenderer>(true).materials[0];
 
         blockActive = gameObject.GetComponent<TechTag>().type == AlienBuildingBlock.prefabInfo.TechType;
 

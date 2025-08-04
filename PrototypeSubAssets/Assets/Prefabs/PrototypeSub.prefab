@@ -102221,8 +102221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabIdentifier: {fileID: 7059317525052420639}
-  saveDataClassTypeName: PrototypeSubMod.SaveData.PrototypeSaveData
-  sendEventsWhenDisabled: 1
+  saveDataAssemblyQualifiedName: PrototypeSubMod.SaveData.PrototypeSaveData, PrototypeSubMod,
+    Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &1872070442936540734
 MonoBehaviour:
   m_ObjectHideFlags: 0
