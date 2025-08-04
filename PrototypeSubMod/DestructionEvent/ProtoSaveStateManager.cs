@@ -50,6 +50,7 @@ internal class ProtoSaveStateManager : MonoBehaviour, IProtoEventListener
 
     public GameObject GetSubRoot()
     {
+        Plugin.Logger.LogDebug($"Root = {root}");
         return root.gameObject;
     }
 
