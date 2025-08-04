@@ -30,6 +30,8 @@ public class FinFoldManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!Camera.main) return;
+        
         bool outOfRange = (Camera.main.transform.position - transform.position).sqrMagnitude > (foldDist * foldDist);
         bool hitObject = MoonpoolOccupiedHandler.MoonpoolBounds.Contains(transform.position);
         if (!outOfRange)
