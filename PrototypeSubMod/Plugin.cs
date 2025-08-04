@@ -33,7 +33,7 @@ namespace PrototypeSubMod
 {
     [BepInPlugin(GUID, pluginName, versionString)]
     [BepInDependency("com.snmodding.nautilus", "1.0.0.40")]
-    [BepInDependency("com.indigocoder.sublibrary")]
+    [BepInDependency("com.indigocoder.sublibrary", "1.7.5")]
     [BepInDependency("com.alembic.package")]
     [BepInDependency("ArchitectsLibrary", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.lee23.theredplague", BepInDependency.DependencyFlags.SoftDependency)]
