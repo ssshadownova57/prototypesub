@@ -240,25 +240,25 @@ namespace PrototypeSubMod
         {
             if (AssetBundle != null) yield break;
 
-            Logger.LogInfo($"Started loading asset bundle");
+            Logger.LogDebug($"Started loading asset bundle");
             
             var task = AssetBundle.LoadFromFileAsync(Path.Combine(AssetsFolderPath, "prototypeassets"));
             yield return task;
             AssetBundle = task.assetBundle;
             
-            Logger.LogInfo($"Asset bundle loaded");
+            Logger.LogDebug($"Asset bundle loaded");
             
             LoadPathfindingGrid();
             
             PrototypePingType = EnumHandler.AddEntry<PingType>("PrototypeSub")
                 .WithIcon(AssetBundle.LoadAsset<Sprite>("Proto_HUD_Marker"));
             
-            Logger.LogInfo($"Set ping type");
+            Logger.LogDebug($"Set ping type");
             
             PrefabRegisterer.Register();
-            Logger.LogInfo($"Loaded normal prefabs");
+            Logger.LogDebug($"Loaded normal prefabs");
             yield return LoadEasyPrefabs.LoadPrefabs(AssetBundle, EncyEntryRegisterer.Register, GC.Collect, GC.WaitForPendingFinalizers);
-            Logger.LogInfo($"Loaded easy prefabs");
+            Logger.LogDebug($"Loaded easy prefabs");
             
             PrototypePowerSystem.AllowedPowerSources = new()
             {
@@ -271,17 +271,17 @@ namespace PrototypeSubMod
             };
             
             ROTACompatManager.AddCompatiblePowerSources();
-            Logger.LogInfo($"Setup power sources");
+            Logger.LogDebug($"Setup power sources");
             
             yield return EnsureBatteryComponents();
             SceneManager.sceneLoaded += OnSceneLoaded;
-            Logger.LogInfo($"Setup power source prefabs");
+            Logger.LogDebug($"Setup power source prefabs");
             PrefabsInitialized = true;
             
             StructureRegisterer.Register();
             StructuresRegistered = true;
             
-            Logger.LogInfo($"Structures registered");
+            Logger.LogDebug($"Structures registered");
             
             StoryGoalsRegisterer.Register();
             BiomeRegisterer.Register();

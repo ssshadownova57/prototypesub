@@ -118,8 +118,6 @@ public class ProtoMatDatabase : ProtoMatDatabaseBase
 
             matResult = returnedMat;
         }
-        else
-            Plugin.Logger.LogDebug($"Failed to find material {matName} in Material Database.");
         
         materialResult.Set(matResult);
     }
