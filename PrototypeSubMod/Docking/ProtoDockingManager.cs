@@ -76,6 +76,8 @@ public class ProtoDockingManager : MonoBehaviour, IProtoEventListener, IProtoTre
         finsDockingManager.SetDockingPrep(false);
         finsDockingManager.GetComponent<ProtoFinsManager>().ResetFinAnimations();
 
+        dockingBay.dockedVehicle.GetComponent<WorldForces>().waterDepth = Ocean.GetOceanLevel();
+
         VehicleFrameworkCompatManager.TryEndDocking(dockingBay.dockedVehicle);
     }
 
