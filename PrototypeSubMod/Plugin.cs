@@ -297,7 +297,21 @@ namespace PrototypeSubMod
         {
             if (scene.name != "MenuEnvironment") return;
 
-            UWE.CoroutineHost.StartCoroutine(EnsureBatteryComponents());
+            CoroutineHost.StartCoroutine(EnsureBatteryComponents());
+            CoroutineHost.StartCoroutine(RemoveGuardianPrefab());
+        }
+
+        private IEnumerator RemoveGuardianPrefab()
+        {
+            if (Chainloader.PluginInfos.ContainsKey("com.aotu.returnoftheancients"))
+            {
+                var guardianTask = PrefabDatabase.GetPrefabAsync("GuardianConstruction_QEP");
+                yield return guardianTask;
+                
+                if (!guardianTask.TryGetPrefab(out var guardianPrefab)) throw new Exception("Error loading RotA guardian prefab");
+
+                guardianPrefab.EnsureComponent<DestroyOnStart>();
+            }
         }
         
         private IEnumerator EnsureBatteryComponents()
