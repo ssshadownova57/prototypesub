@@ -55,7 +55,6 @@ public class PrototypePowerSystem : MonoBehaviour, ISaveDataListener, IProtoTree
 
         UpdateActiveRelays();
         UpdateAmbientSFX();
-        HandleFallbackPowerIssues();
     }
 
     private void Initialize()
@@ -145,6 +144,8 @@ public class PrototypePowerSystem : MonoBehaviour, ISaveDataListener, IProtoTree
         }
 
         UpdateRelayStatus();
+        
+        HandleFallbackPowerIssues();
     }
 
     public static void AddPowerSource(TechType techType, PowerConfigData configData)
