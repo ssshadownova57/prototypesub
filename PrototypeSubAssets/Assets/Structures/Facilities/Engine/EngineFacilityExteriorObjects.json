@@ -2905,28 +2905,6 @@
       "priority": 0
     },
     {
-      "classId": "EngineFacilityRepairPoint",
-      "id": "735e0bc5-3e28-4530-b0ce-7ff1eb3ac965",
-      "position": {
-        "x": -517.4854,
-        "y": -489.6863,
-        "z": 1621.57349
-      },
-      "rotation": {
-        "x": 0.5054056,
-        "y": -0.505405664,
-        "z": 0.494535327,
-        "w": 0.4945353
-      },
-      "scale": {
-        "x": 0.6022432,
-        "y": 0.6022432,
-        "z": 0.6022432
-      },
-      "cellLevel": 3,
-      "priority": 0
-    },
-    {
       "classId": "ProtoBattery",
       "id": "ba865e6d-f9dc-48e1-a788-fa03305bb129",
       "position": {
@@ -2968,50 +2946,6 @@
         "z": 1.0
       },
       "cellLevel": 2,
-      "priority": 0
-    },
-    {
-      "classId": "EngineFacilityRepairPoint",
-      "id": "2e35b1c1-b0ee-4a57-a8f0-50fc514a9e4f",
-      "position": {
-        "x": -553.631836,
-        "y": -469.54007,
-        "z": 1599.01941
-      },
-      "rotation": {
-        "x": -0.6723694,
-        "y": -0.1998649,
-        "z": -0.218904987,
-        "w": 0.6782728
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "cellLevel": 3,
-      "priority": 0
-    },
-    {
-      "classId": "EngineFacilityRepairPoint",
-      "id": "c791ac1d-5e72-472b-9dd5-369405c99445",
-      "position": {
-        "x": -548.3864,
-        "y": -491.055481,
-        "z": 1613.54456
-      },
-      "rotation": {
-        "x": 0.707106948,
-        "y": -0.70710665,
-        "z": 1.89660881E-07,
-        "w": -1.05367121E-07
-      },
-      "scale": {
-        "x": 0.689399838,
-        "y": 0.689399838,
-        "z": 0.4991857
-      },
-      "cellLevel": 3,
       "priority": 0
     },
     {
@@ -3848,28 +3782,6 @@
         "z": 1.0
       },
       "cellLevel": 0,
-      "priority": 0
-    },
-    {
-      "classId": "EngineFacilityRepairPoint",
-      "id": "9dc7667f-5267-4885-b3dc-48c40a8a73b4",
-      "position": {
-        "x": -539.029663,
-        "y": -488.737946,
-        "z": 1614.42725
-      },
-      "rotation": {
-        "x": -0.4780606,
-        "y": -0.478060633,
-        "z": -0.521016359,
-        "w": 0.521016359
-      },
-      "scale": {
-        "x": 0.602208853,
-        "y": 0.602208853,
-        "z": 0.602208853
-      },
-      "cellLevel": 3,
       "priority": 0
     }
   ],

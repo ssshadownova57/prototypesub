@@ -12,8 +12,7 @@ public class EngineFacilityRepairPoint : MonoBehaviour
 
     private void Start()
     {
-        var identifier = GetComponent<PrefabIdentifier>();
-        if (Plugin.GlobalSaveData.repairedEngineFacilityPoints.Contains(identifier.Id))
+        if (Plugin.GlobalSaveData.repairedEngineFacilityPoints.Contains(gameObject.name))
         {
             gameObject.SetActive(false);
         }
@@ -21,8 +20,7 @@ public class EngineFacilityRepairPoint : MonoBehaviour
 
     public void OnRepair()
     {
-        var identifier = GetComponent<PrefabIdentifier>();
-        Plugin.GlobalSaveData.repairedEngineFacilityPoints.Add(identifier.Id);
+        Plugin.GlobalSaveData.repairedEngineFacilityPoints.Add(gameObject.name);
         int remainingPoints = REPAIR_POINTS_COUNT - Plugin.GlobalSaveData.repairedEngineFacilityPoints.Count;
         PDALog.Add(remainingPointsVoicelines[remainingPoints].path);
         gameObject.SetActive(false);

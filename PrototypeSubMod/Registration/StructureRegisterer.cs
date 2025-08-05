@@ -15,7 +15,7 @@ internal static class StructureRegisterer
         
         Structure.LoadFromBundle("DefenseTunnel").RegisterStructure();
         Structure.LoadFromBundle("EngineFacilityObjects").RegisterStructure();
-        Structure.LoadFromBundle("EngineFacilityAdditions_Octo").RegisterStructure();
+        Structure.LoadFromBundle("EngineFacilityAdditions").RegisterStructure();
         Structure.LoadFromBundle("EngineFacilityExteriorObjects").RegisterStructure();
         Structure.LoadFromBundle("DefenseMoonpool").RegisterStructure();
         Structure.LoadFromBundle("ProtoItemDisplayCases").RegisterStructure();
