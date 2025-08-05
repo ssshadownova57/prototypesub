@@ -79,7 +79,8 @@ internal static class LoadEasyPrefabs
     {
         if (easyPrefab.craftable)
         {
-            string path = Path.Combine(easyPrefab.jsonRecipePath, $"{easyPrefab.techType.techTypeName}.json");
+            var recipePath = Path.Combine(easyPrefab.jsonRecipePath);
+            string path = Path.Combine(recipePath, $"{easyPrefab.techType.techTypeName}.json");
             prefab.SetRecipe(ROTACompatManager.GetRelevantRecipe(path));
         }
 

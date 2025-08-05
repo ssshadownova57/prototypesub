@@ -22,4 +22,6 @@ MonoBehaviour:
   isProtoUpgrade: 0
   techGroup: PrototypeSub
   techCategory: ProtoModules
-  jsonRecipePath: Upgrades\\Relays
+  jsonRecipePath:
+  - Upgrades
+  - Relays

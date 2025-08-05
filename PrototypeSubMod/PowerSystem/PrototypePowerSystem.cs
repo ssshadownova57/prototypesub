@@ -193,9 +193,7 @@ public class PrototypePowerSystem : MonoBehaviour, ISaveDataListener, IProtoTree
 
         if (allowedPowerSourceCount < storageRoot.transform.childCount)
         {
-            allowedPowerSourceCount = storageRoot.transform.childCount;
-            UpdateActiveRelays();
-            UpdateRelayStatus();
+            SetAllowedSourcesCount(storageRoot.transform.childCount);
         }
     }
 

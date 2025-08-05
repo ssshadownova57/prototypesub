@@ -40,6 +40,7 @@ internal class WarperRemnant : RelicBlock
         }
         
         var meshRenderer = relicBlock.GetComponentInChildren<MeshRenderer>(true);
+        meshRenderer.gameObject.SetActive(true);
         
         var relicInstance = Object.Instantiate(meshRenderer.gameObject, instance.transform.GetChild(0));
 

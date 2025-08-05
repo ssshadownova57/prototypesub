@@ -19,6 +19,8 @@ MonoBehaviour:
   applyPrecursorMaterialChanges: 0
   unlockAtStart: 0
   craftable: 0
-  includeInPDA: 0
   isProtoUpgrade: 0
-  jsonRecipePath: Upgrades
+  techGroup: 
+  techCategory: 
+  jsonRecipePath:
+  - Upgrades

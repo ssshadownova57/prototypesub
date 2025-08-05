@@ -22,4 +22,5 @@ MonoBehaviour:
   isProtoUpgrade: 0
   techGroup: 
   techCategory: 
-  jsonRecipePath: Upgrades
+  jsonRecipePath:
+  - Upgrades
