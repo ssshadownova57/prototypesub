@@ -12,6 +12,8 @@ internal class SubReconstructionManager : MonoBehaviour
 
     public GameObject GetSubObject()
     {
+        ProtoSaveStateManager.DestroyedManagers.RemoveAll(m => m == null);
+        
         if (ProtoSaveStateManager.DestroyedManagers.Count == 0) return null;
 
         return ProtoSaveStateManager.DestroyedManagers[0].GetSubRoot();
