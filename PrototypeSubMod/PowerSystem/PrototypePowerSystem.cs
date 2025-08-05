@@ -67,9 +67,10 @@ public class PrototypePowerSystem : MonoBehaviour, ISaveDataListener, IProtoTree
         equipment.onUnequip += OnUnequip;
         equipment.onRemoveItem += OnRemoveItem;
 
-        Plugin.Logger.LogInfo($"Adding slots. Len =  {equipment.equipment.Count}");
+        Plugin.Logger.LogInfo($"Adding slots. Len = {equipment.equipment.Count}");
+        Plugin.Logger.LogInfo($"Slot mapping = {Equipment.slotMapping}");
         equipment.AddSlots(SLOT_NAMES);
-        Plugin.Logger.LogInfo($"Added slots. Len =  {equipment.equipment.Count}");
+        Plugin.Logger.LogInfo($"Added slots. Len = {equipment.equipment.Count}");
         
         equipment.isAllowedToAdd = IsAllowedToAdd;
         equipment.isAllowedToRemove = (p, v) => true;
