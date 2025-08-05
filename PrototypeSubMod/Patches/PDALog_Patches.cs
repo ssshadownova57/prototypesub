@@ -1,8 +1,6 @@
 ﻿using HarmonyLib;
 using Nautilus.Utility;
 using System.Collections.Generic;
-using System.Linq;
-using PrototypeSubMod.Utility;
 using UnityEngine;
 
 namespace PrototypeSubMod.Patches;
@@ -14,11 +12,9 @@ internal class PDALog_Patches
     public static List<(string assetName, string key)> orionEntries = new();
     
     [HarmonyPatch(nameof(PDALog.Initialize)), HarmonyPostfix]
-    private static void Initialize_Postfix()
+    private static void Initialize_Postfix(PDAData pdaData)
     {
-        var pdaSprite = PDALog.mapping.First(i => i.Value.key == "Goal_BiomeKooshZone").Value.icon;
-
-        AddEntries(entries, pdaSprite);
+        AddEntries(entries, pdaData.log[0].icon);
         AddEntries(orionEntries, Plugin.AssetBundle.LoadAsset<Sprite>("ProtoPDALogo"));
     }
 
