@@ -14,7 +14,14 @@ internal class PDALog_Patches
     [HarmonyPatch(nameof(PDALog.Initialize)), HarmonyPostfix]
     private static void Initialize_Postfix(PDAData pdaData)
     {
-        AddEntries(entries, pdaData.log[0].icon);
+        Plugin.Logger.LogInfo($"Pda data = {pdaData}");
+        Plugin.Logger.LogInfo($"Pda log = {pdaData.log}");
+        Plugin.Logger.LogInfo($"Pda log item 0 = {pdaData.log[0]}");
+        var pdaIcon = pdaData.log[0].icon;
+        Plugin.Logger.LogInfo($"Pda Icon = {pdaIcon}");
+        Plugin.Logger.LogInfo($"Asset bundle = {Plugin.AssetBundle}");
+        Plugin.Logger.LogInfo($"Orion sprite = {Plugin.AssetBundle.LoadAsset<Sprite>("ProtoPDALogo")}");
+        AddEntries(entries, pdaIcon);
         AddEntries(orionEntries, Plugin.AssetBundle.LoadAsset<Sprite>("ProtoPDALogo"));
     }
 
