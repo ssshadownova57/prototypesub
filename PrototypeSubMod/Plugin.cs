@@ -149,7 +149,7 @@ namespace PrototypeSubMod
             CraftDataHandler.SetRecipeData(TechType.RocketStage3, recipeData);
 
             string modName = Language.main.Get("ProtoModName");
-            WaitScreenHandler.RegisterAsyncLoadTask(modName, LoadBundleTask, Language.main.Get("ProtoWaitLoadingBundle"));
+            WaitScreenHandler.RegisterEarlyAsyncLoadTask(modName, LoadBundleTask, Language.main.Get("ProtoWaitLoadingBundle"));
             WaitScreenHandler.RegisterAsyncLoadTask(modName, LoadPrefabsTask, Language.main.Get("ProtoWaitLoadingPrefabs"));
             WaitScreenHandler.RegisterAsyncLoadTask(modName, LoadStructuresTask, Language.main.Get("ProtoWaitRegisteringStructures"));
             WaitScreenHandler.RegisterAsyncLoadTask(modName, LoadMiscellaneousTask, Language.main.Get("ProtoWaitRegisteringMiscellaneous"));
