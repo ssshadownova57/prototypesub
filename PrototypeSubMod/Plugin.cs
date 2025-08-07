@@ -69,6 +69,18 @@ namespace PrototypeSubMod
                     : "prototypeshaders_WINDOWS";
                 _shadersAssetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolderPath, bundleName));
 
+                #if !DEBUG
+                string deleteBundleName = RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+                    ? "prototypeshaders_WINDOWS"
+                    : "prototypeshaders_MAC";
+
+                string deletePath = Path.Combine(AssetsFolderPath, deleteBundleName);
+                if (File.Exists(deletePath))
+                {
+                    File.Delete(deletePath);
+                }
+                #endif
+                
                 return _shadersAssetBundle;
             }
         }

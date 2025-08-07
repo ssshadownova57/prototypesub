@@ -1,4 +1,4 @@
-﻿Shader "Unlit/Highlight"
+﻿Shader "Unlit/HighlightShader"
 {
     Properties
     {

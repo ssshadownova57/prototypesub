@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PrototypeSubMod.UI.ProceduralArcGenerator;
 
@@ -10,6 +11,12 @@ public class UICircularMeshApplier : CircularMeshApplier
     private void OnValidate()
     {
         if (!canvasRend) TryGetComponent(out canvasRend);
+    }
+
+    private void Awake()
+    {
+        var shader = Plugin.ShadersAssetBundle.LoadAsset<Shader>(material.shader.name.Split('/')[^1]);
+        material.shader = shader;
     }
 
     public override void UpdateMesh()

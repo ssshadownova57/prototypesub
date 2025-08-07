@@ -76,6 +76,11 @@ internal class CloakEffectHandler : ProtoUpgrade
     private float currentScaleTime;
     private bool isDirty = true;
 
+    private void Awake()
+    {
+        shader = Plugin.ShadersAssetBundle.LoadAsset<Shader>(shader.name.Split('/')[^1]);
+    }
+    
     private void Start()
     {
         originalScale = ovoid.localScale;
