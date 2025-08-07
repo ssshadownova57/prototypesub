@@ -15,6 +15,7 @@ using SubLibrary.Audio;
 using System.Collections;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
 using Nautilus.Handlers.LoadingScreen;
 using Nautilus.Handlers.TitleScreen;
@@ -56,6 +57,23 @@ namespace PrototypeSubMod
         public static AssetBundle AudioBundle { get; private set; }
         public static AssetBundle ScenesAssetBundle { get; private set; }
         public static AssetBundle TitleAssetBundle { get; } = AssetBundle.LoadFromFile(Path.Combine(AssetsFolderPath, "prototypetitle"));
+
+        public static AssetBundle ShadersAssetBundle
+        {
+            get
+            {
+                if (_shadersAssetBundle != null) return _shadersAssetBundle;
+
+                string bundleName = RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+                    ? "prototypeshaders_MAC"
+                    : "prototypeshaders_WINDOWS";
+                _shadersAssetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolderPath, bundleName));
+
+                return _shadersAssetBundle;
+            }
+        }
+
+        private static AssetBundle _shadersAssetBundle;
 
         public static EquipmentType PrototypePowerType { get; } = EnumHandler.AddEntry<EquipmentType>("PrototypePowerType");
         public static EquipmentType LightBeaconEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("LightBeaconType");
