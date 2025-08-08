@@ -1,4 +1,5 @@
-﻿using Story;
+﻿using System;
+using Story;
 using UnityEngine;
 
 namespace PrototypeSubMod.Facilities.Defense;
@@ -61,6 +62,11 @@ internal class DefenseCloakManager : MonoBehaviour
     private void OnValidate()
     {
         isDirty = true;
+    }
+
+    private void Awake()
+    {
+        shader = Plugin.ShadersAssetBundle.LoadAsset<Shader>(shader.name.Split('/')[^1]);
     }
 
     private void Start()
