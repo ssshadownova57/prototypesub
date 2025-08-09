@@ -89,5 +89,6 @@ public class RelayInstallationButton : MonoBehaviour
     public void LockTechType()
     {
         KnownTech.Remove(relayUpgradeTechType.TechType);
+        PinManager.SetPin(relayUpgradeTechType.TechType, false);
     }
 }
