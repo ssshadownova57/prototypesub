@@ -20,7 +20,7 @@ public static class TeleporterPositionHandler
         { "cragfieldtpS", new(new Vector3(-52.31f, -280f, -1232f), -120.016f) },
 
         { "kooshzonetpM", new(new Vector3(340.21f, -1430f, -270.5f), -118.949f) },
-        { "kooshzonetpS", new(new Vector3(182.43f, -1430.29f, -409.1f), 61.051f) },
+        { "kooshzonetpS", new(new Vector3(1367.27f, -303.38f, 694.25f), -98.764f) },
 
         { "lostrivertpM", new(new Vector3(182.43f, -1430.29f, -409.1f), 61.051f) },
         { "lostrivertpS", new(new Vector3(-884f, -613f, 1033f), -30f) },
@@ -45,7 +45,7 @@ public static class TeleporterPositionHandler
         "lostrivertp",
         "mushroomforesttp",
         "protohullfacilitytp",
-        "rotoenginefacilitytp"
+        "protoenginefacilitytp"
     };
 
     public struct TeleportData
