@@ -1,4 +1,5 @@
-﻿using Nautilus.Handlers;
+﻿using System.Collections;
+using Nautilus.Handlers;
 using Story;
 using UnityEngine;
 
@@ -13,6 +14,15 @@ internal class DefenseDoorHandler : MonoBehaviour
 
     private bool hasOpened;
 
+    private void OnEnable()
+    {
+        if (StoryGoalManager.main.IsGoalComplete("DefenseChamberDoorOpened"))
+        {
+            animator.SetTrigger("OpenDoor");
+            hasOpened = true;
+        }
+    }
+    
     public void OpenDoor()
     {
         if (hasOpened) return;
@@ -24,6 +34,8 @@ internal class DefenseDoorHandler : MonoBehaviour
 
         Invoke(nameof(PlaySwoosh), 4.5f);
         hasOpened = true;
+
+        StoryGoalManager.main.OnGoalComplete("DefenseChamberDoorOpened");
     }
 
     private void PlaySwoosh()

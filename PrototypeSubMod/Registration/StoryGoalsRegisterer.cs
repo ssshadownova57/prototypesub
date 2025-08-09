@@ -193,6 +193,7 @@ internal static class StoryGoalsRegisterer
         StoryGoalHandler.RegisterCustomEvent("EngineFacilityTeleporterUnlocked", null);
         StoryGoalHandler.RegisterCustomEvent("EngineGatesUnlocked", null);
         StoryGoalHandler.RegisterCustomEvent("DefenseTeleporterGatesUnlocked", null);
+        StoryGoalHandler.RegisterCustomEvent("DefenseChamberDoorOpened", null);
         
         StoryGoalHandler.RegisterCustomEvent("OnUnlocked_EngineUpgradeText_Native", null);
         StoryGoalHandler.RegisterCustomEvent("OnUnlocked_DefenseUpgradeText_Native", null);
