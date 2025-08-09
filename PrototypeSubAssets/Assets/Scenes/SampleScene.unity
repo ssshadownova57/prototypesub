@@ -20296,6 +20296,8 @@ MonoBehaviour:
   - {fileID: 457148572}
   - {fileID: 923451152}
   pointManager: {fileID: 0}
+  lavaLarvaeRoot: {fileID: 0}
+  secondsBetweenLarvaClear: 0
   secondsForOneChargeDrain: 120
 --- !u!1 &673535522
 GameObject:
@@ -20803,7 +20805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &687535680
 Transform:
   m_ObjectHideFlags: 0
