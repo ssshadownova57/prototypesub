@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using PrototypeSubMod.MiscMonobehaviors.SubSystems;
 using PrototypeSubMod.Upgrades;
 using PrototypeSubMod.Facilities.Interceptor;
@@ -36,6 +37,7 @@ internal class ProtoTeleporterManager : ProtoUpgrade
 
     private void Start()
     {
+        TeleporterOverride.ClearEvents();
         PrecursorTeleporter.TeleportEventEnd += OnTeleportEnd;
         TeleporterManager.main.activeTeleporters.Remove("prototypetp");
         TeleporterOverride.OnActiveTeleporterUnloaded += (id, time) =>
@@ -138,6 +140,11 @@ internal class ProtoTeleporterManager : ProtoUpgrade
     public void PlayOverrideMarker2()
     {
         overrideStatus2.Play();
+    }
+
+    private void OnDestroy()
+    {
+        PrecursorTeleporter.TeleportEventEnd -= OnTeleportEnd;
     }
 
     public override bool GetUpgradeEnabled() => upgradeInstalled;

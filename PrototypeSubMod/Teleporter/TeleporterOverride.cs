@@ -35,6 +35,14 @@ internal class TeleporterOverride : MonoBehaviour
     private Color originalColor;
     private Color targetColor;
 
+    public static void ClearEvents()
+    {
+        OnOverrideRunOut = null;
+        OnActiveTeleporterUnloaded = null;
+        OnUnloadedTeleporterReload = null;
+        OnTeleportStart = null;
+    }
+    
     public static void SetOverrideTeleporterID(string id)
     {
         FullOverrideTeleporterID = id;
