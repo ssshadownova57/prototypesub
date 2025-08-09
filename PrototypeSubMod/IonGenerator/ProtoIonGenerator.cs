@@ -96,6 +96,7 @@ internal class ProtoIonGenerator : ProtoUpgrade
 
         subRoot.powerRelay.DisableElectronicsForTime(empOxygenDisableTime);
         Utils.PlayEnvSound(empSoundEffect, empSpawner.GetSpawnPos().position, soundEffectVolume);
+        SetUpgradeEnabled(false);
     }
 
     public void SetEnergyMultiplier(float multiplier)
