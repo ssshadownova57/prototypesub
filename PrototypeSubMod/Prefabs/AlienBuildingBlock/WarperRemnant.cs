@@ -23,6 +23,8 @@ internal class WarperRemnant : RelicBlock
     private static IEnumerator GetPrefab(IOut<GameObject> prefab)
     {
         CraftData.PreparePrefabIDCache();
+        yield return new WaitForEndOfFrame();
+        
         var returnPrefab = Plugin.AssetBundle.LoadAsset<GameObject>("WarperRemnant");
         
         if(returnPrefab == null)
@@ -41,8 +43,11 @@ internal class WarperRemnant : RelicBlock
         
         var meshRenderer = relicBlock.GetComponentInChildren<MeshRenderer>(true);
         meshRenderer.gameObject.SetActive(true);
+        Plugin.Logger.LogInfo($"Rend = {meshRenderer}");
+        Plugin.Logger.LogInfo($"Instance = {instance}");
+        Plugin.Logger.LogInfo($"Child 0 = {instance.transform.GetChild(0)}");
         
-        var relicInstance = Object.Instantiate(meshRenderer.gameObject, instance.transform.GetChild(0));
+        var relicInstance = GameObject.Instantiate(meshRenderer.gameObject, instance.transform.GetChild(0));
 
         var relicMat = relicInstance.GetComponent<MeshRenderer>().materials[0];
         

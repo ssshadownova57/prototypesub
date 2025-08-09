@@ -66,7 +66,7 @@ public class ProtoTeleporterIDManager : MonoBehaviour, ISaveDataListener
         foreach (var item in TeleporterManager.main.activeTeleporters)
         {
             string lowercaseID = item.ToLower();
-            if (lowercaseID.Contains("proto") && item != "protoislandtp") continue;
+            if (item == "prototypetp") continue;
 
             if (string.IsNullOrEmpty(activatedPCFTeleporterID) && pcfTeleporterIds.Contains(lowercaseID))
             {

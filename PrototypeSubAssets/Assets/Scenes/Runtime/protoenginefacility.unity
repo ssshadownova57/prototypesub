@@ -35983,6 +35983,7 @@ GameObject:
   - component: {fileID: 1762507583}
   - component: {fileID: 1762507582}
   - component: {fileID: 1762507581}
+  - component: {fileID: 1762507584}
   m_Layer: 0
   m_Name: Teleporter
   m_TagString: Untagged
@@ -36074,6 +36075,18 @@ MonoBehaviour:
   hasFirstUse: 0
   powerUpSound: {fileID: 11400000, guid: 47f651d419a15d440ab273cae9bed15c, type: 2}
   activeLoopSound: {fileID: 1762507581}
+--- !u!114 &1762507584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762507579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2042573399, guid: a7cf2516c626129479cfce7cab60699e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1770927543
 GameObject:
   m_ObjectHideFlags: 0

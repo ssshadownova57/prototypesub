@@ -84,7 +84,7 @@ internal class TeleporterOverride : MonoBehaviour
         originalTeleportPosition = teleporter.warpToPos;
         originalTeleportAngle = teleporter.warpToAngle;
 
-        teleporterID = teleporter.teleporterIdentifier + (GetComponentInParent<PrecursorTeleporterActivationTerminal>() != null ? "M" : "S");
+        teleporterID = teleporter.teleporterIdentifier + (IsTeleporterHost(teleporter.teleporterIdentifier) ? "M" : "S");
 
         if (teleporterID != FullOverrideTeleporterID) return;
 
@@ -111,9 +111,19 @@ internal class TeleporterOverride : MonoBehaviour
         OnUnloadedTeleporterReload?.Invoke(teleporterID);
     }
 
+    private bool IsTeleporterHost(string identifier)
+    {
+        if (!identifier.ToLower().Contains("proto"))
+        {
+            return GetComponentInParent<PrecursorTeleporterActivationTerminal>() != null;
+        }
+
+        return TryGetComponent(out TeleporterHostMarker _);
+    }
+
     private void TargetTeleporterCheck()
     {
-        teleporterID = teleporter.teleporterIdentifier + (GetComponentInParent<PrecursorTeleporterActivationTerminal>() != null ? "M" : "S");
+        teleporterID = teleporter.teleporterIdentifier + (IsTeleporterHost(teleporter.teleporterIdentifier) ? "M" : "S");
 
         if (teleporterID != FullOverrideTeleporterID) return;
 

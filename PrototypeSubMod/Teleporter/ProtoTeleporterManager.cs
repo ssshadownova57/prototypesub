@@ -75,6 +75,8 @@ internal class ProtoTeleporterManager : ProtoUpgrade
     // Called by PrecursorTeleporterCollider.OnTriggerEnter via SendMessageUpwards
     public void BeginTeleportPlayer(GameObject player)
     {
+        Plugin.Logger.LogInfo($"Starting teleport player to {teleporterID}");
+        
         TeleporterPositionHandler.TeleportData positionData = default;
         if (!TeleporterPositionHandler.TeleporterPositions.TryGetValue(teleporterID, out positionData))
         {
@@ -106,6 +108,7 @@ internal class ProtoTeleporterManager : ProtoUpgrade
 
     public void SetTeleporterID(string id)
     {
+        Plugin.Logger.LogInfo($"Setting teleporter ID to {id}");
         teleporterID = id;
     }
 
