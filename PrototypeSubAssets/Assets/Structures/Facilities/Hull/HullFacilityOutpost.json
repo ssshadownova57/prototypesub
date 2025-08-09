@@ -3785,28 +3785,6 @@
       "priority": 0
     },
     {
-      "classId": "PrecursorFabricator",
-      "id": "766fe3ec-c91c-44da-a2fb-65ecedc003be",
-      "position": {
-        "x": -124.79747,
-        "y": -79.20595,
-        "z": -166.871887
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.978382051,
-        "z": 0.0,
-        "w": 0.2068055
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "cellLevel": 1,
-      "priority": 0
-    },
-    {
       "classId": "ce3c3053-5022-404e-a165-e31abe495f1b",
       "id": "5bb8ea46-11d1-40c9-8169-a7963f6cbcf4",
       "position": {
