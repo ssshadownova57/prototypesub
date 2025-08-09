@@ -62,10 +62,10 @@ public class ProtoPowerRelay : MonoBehaviour
             ErrorMessage.AddError(Language.main.Get("InventoryFull"));
             return;
         }
-        
-        powerSystem.equipment.RemoveItem(inventoryItem.item);
-        Inventory.main.container.AddItem(inventoryItem.item);
-        uGUI_IconNotifier.main.Play(inventoryItem.techType, uGUI_IconNotifier.AnimationType.From);
-        inventoryItem.item.Pickup();
+
+        string slot = string.Empty;
+        powerSystem.equipment.GetItemSlot(inventoryItem, ref slot);
+        powerSystem.equipment.RemoveItem(slot, true, false);
+        Inventory.main.Pickup(inventoryItem.item);
     }
 }

@@ -136,6 +136,13 @@ public class PrototypePowerSystem : MonoBehaviour, ISaveDataListener, IProtoTree
 
     public void OnProtoDeserializeObjectTree(ProtobufSerializer serializer)
     {
+        UWE.CoroutineHost.StartCoroutine(OnDeserialized());
+    }
+
+    private IEnumerator OnDeserialized()
+    {
+        yield return new WaitForEndOfFrame();
+        
         Initialize();
         
         var data = serializationManager.saveData.EnsureAsPrototypeData();
