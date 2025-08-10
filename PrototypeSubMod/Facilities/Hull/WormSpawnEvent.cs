@@ -12,6 +12,8 @@ public class WormSpawnEvent : MonoBehaviour
 {
     private const float MIN_TIME_BETWEEN_SPAWNS = 120;
 
+    private static readonly Vector3 QepLocation = new Vector3(465.67f, -109.81f, 1216.69f);
+    
     [SaveStateReference(float.MinValue)] 
     public static float TimeWormsEnabled;
     
@@ -67,7 +69,7 @@ public class WormSpawnEvent : MonoBehaviour
         
         if (_activeSpawnLocations == null) _activeSpawnLocations = new();
 
-        if (_activeSpawnLocations.Contains(transform.position))
+        if (_activeSpawnLocations.Contains(transform.position) || Vector3.Distance(transform.position, QepLocation) < 250)
         {
             Destroy(gameObject);
             calledDestroy = true;
