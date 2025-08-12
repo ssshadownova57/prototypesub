@@ -19,8 +19,8 @@ internal class NonfunctionalKeyTerminal
             var keyTerminal = gameObject.GetComponent<PrecursorKeyTerminal>();
             var trigger = gameObject.transform.Find("Trigger").gameObject;
 
-            GameObject.Destroy(keyTerminal);
-            GameObject.Destroy(trigger);
+            GameObject.DestroyImmediate(keyTerminal);
+            GameObject.DestroyImmediate(trigger);
         };
 
         prefab.SetGameObject(cloneTemplate);
