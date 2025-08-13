@@ -169,7 +169,7 @@ namespace PrototypeSubMod
                 var ingredient = recipeData.Ingredients[i];
                 if (ingredient.techType == TechType.CyclopsShieldModule)
                 {
-                    ingredient = new CraftData.Ingredient(TechType.ReactorRod, 2);
+                    ingredient = new Ingredient(TechType.ReactorRod, 2);
                 }
 
                 recipeData.Ingredients[i] = ingredient;

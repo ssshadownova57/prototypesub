@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
 using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
+using Nautilus.Handlers;
 using UnityEngine;
 
 namespace PrototypeSubMod.Prefabs;
@@ -41,17 +43,17 @@ internal class PrecursorIonCrystal_Craftable
 
         var recipeData = new RecipeData
         {
-            Ingredients = new CraftData.Ingredients
+            Ingredients = new List<Ingredient>
             {
-                TechType.Titanium
+                new (TechType.Titanium, 1)
             },
             craftAmount = 1
         };
         patch.AddGadget(new ScanningGadget(crystal, TechType.None)
             .WithPdaGroupCategory(Plugin.ProtoFabricatorGroup, Plugin.ProtoFabricatorCatgeory));
         patch.AddGadget(new CraftingGadget(crystal, recipeData).WithCraftingTime(3f));
-        
-        CraftData.pickupSoundList.Add(TechType.PrecursorIonCrystal, "event:/loot/pickup_precursorioncrystal");
+
+        CraftDataHandler.SetPickupSound(TechType.PrecursorIonCrystal, "event:/loot/pickup_precursorioncrystal");
 
         patch.Register();
     }

@@ -47,7 +47,7 @@ public class ProtoPowerRelay : MonoBehaviour
     {
         if (item != null)
         {
-            icon.sprite = iconManager.GetSpriteForTechType(item.techType);
+            UWE.CoroutineHost.StartCoroutine(SetSpriteDelayed());
         }
         
         inventoryItem = item;

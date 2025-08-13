@@ -109,27 +109,6 @@ internal class uGUI_Equipment_Patches
 
         return matcher.InstructionEnumeration();
     }
-
-    [HarmonyPatch(nameof(uGUI_Equipment.OnItemDragStart)), HarmonyPrefix]
-    private static void OnItemDragStart_Prefix(Pickupable p)
-    {
-        TechType type = p.GetTechType();
-        if (!PrototypePowerSystem.AllowedPowerSources.Keys.Contains(type)) return;
-        LastDraggedItem = new DraggedItem(p, CraftData.GetEquipmentType(type));
-        CraftData.equipmentTypes[type] = Plugin.PrototypePowerType;
-    }
-
-    [HarmonyPatch(nameof(uGUI_Equipment.OnItemDragStop)), HarmonyPrefix]
-    private static void OnItemDragStop_Prefix()
-    {
-        if (LastDraggedItem == null)
-        {
-            //Invalid slot
-            return;
-        }
-
-        CraftData.equipmentTypes[LastDraggedItem.pickupable.GetTechType()] = LastDraggedItem.originalType;
-    }
     
     [HarmonyPatch(nameof(uGUI_Equipment.Init)), HarmonyPostfix]
     private static void Init_Postfix(uGUI_Equipment __instance, Equipment equipment)

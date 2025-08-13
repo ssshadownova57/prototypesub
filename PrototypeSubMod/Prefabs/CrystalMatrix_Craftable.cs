@@ -62,9 +62,9 @@ internal class CrystalMatrix_Craftable
             .WithStepsToFabricatorTab("PowerSources"));
 
         Sprite matrixSprite = Plugin.AssetBundle.LoadAsset<Sprite>("matrixSprite");
-        SpriteHandler.RegisterSprite(TechType.PrecursorIonCrystalMatrix, new Atlas.Sprite(matrixSprite));
+        SpriteHandler.RegisterSprite(TechType.PrecursorIonCrystalMatrix, matrixSprite);
 
-        CraftData.pickupSoundList.Add(TechType.PrecursorIonCrystalMatrix, "event:/loot/pickup_precursorioncrystal");
+        CraftDataHandler.SetPickupSound(TechType.PrecursorIonCrystalMatrix, "event:/loot/pickup_precursorioncrystal");
 
         patch.Register();
     }

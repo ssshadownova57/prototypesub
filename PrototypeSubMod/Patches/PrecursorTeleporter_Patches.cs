@@ -32,8 +32,8 @@ internal class PrecursorTeleporter_Patches
         return matcher.InstructionEnumeration();
     }
 
-    [HarmonyPatch(nameof(PrecursorTeleporter.SetWarpPosition)), HarmonyPostfix]
-    private static void SetWarpPosition_Postfix(PrecursorTeleporter __instance)
+    [HarmonyPatch(nameof(PrecursorTeleporter.OnEndTeleportPlayer)), HarmonyPostfix]
+    private static void OnEndTeleportPlayer_Postfix(PrecursorTeleporter __instance)
     {
         lastTeleporterID = __instance.teleporterIdentifier;
         lastTeleporterWasProtoSub = __instance.TryGetComponent(out ProtoTeleporterManager positionSetter);

@@ -27,9 +27,9 @@ internal class ListeningDevice_Craftable
         prefab.SetRecipe(new RecipeData
         {
             craftAmount = 1,
-            Ingredients = new List<CraftData.Ingredient>
+            Ingredients = new List<Ingredient>
             {
-                new(TechType.Titanium)
+                new(TechType.Titanium, 1)
             }
         }).WithCraftingTime(5f);
         prefab.SetEquipment(EquipmentType.Chip);

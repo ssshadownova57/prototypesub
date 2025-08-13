@@ -4,6 +4,7 @@ using Nautilus.Utility;
 using PrototypeSubMod.Compatibility;
 using PrototypeSubMod.Utility;
 using System.Collections;
+using Nautilus.Handlers;
 using UnityEngine;
 
 namespace PrototypeSubMod.Prefabs;
@@ -27,7 +28,7 @@ internal class IonPrism_Craftable
         prefab.SetEquipment(Plugin.PrototypePowerType);
         prefab.SetPdaGroupCategory(Plugin.ProtoFabricatorGroup, Plugin.ProtoFabricatorCatgeory);
 
-        CraftData.pickupSoundList.Add(prefabInfo.TechType, "event:/loot/pickup_precursorioncrystal");
+        CraftDataHandler.SetPickupSound(prefabInfo.TechType, "event:/loot/pickup_precursorioncrystal");
 
         prefab.Register();
     }

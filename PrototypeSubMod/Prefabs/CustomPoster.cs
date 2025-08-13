@@ -12,7 +12,8 @@ internal class CustomPoster
 
     public CustomPoster(string classId, string displayName, string description, Texture2D posterImage, Texture2D posterIcon, TechType basePoster = TechType.PosterAurora)
     {
-        prefabInfo = PrefabInfo.WithTechType(classId, displayName, description, unlockAtStart: true).WithIcon(new Atlas.Sprite(posterIcon));
+        var sprite = Sprite.Create(posterIcon, new Rect(0, 0, posterIcon.width, posterIcon.height), new Vector2(posterIcon.width / 2f, posterIcon.height / 2f));
+        prefabInfo = PrefabInfo.WithTechType(classId, displayName, description, unlockAtStart: true).WithIcon(sprite);
         _posterImage = posterImage;
 
         var prefab = new CustomPrefab(prefabInfo);

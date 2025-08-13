@@ -195,7 +195,6 @@ public class PrototypePowerSource : MonoBehaviour, IPowerInterface, ISaveDataLis
         string slot = PrototypePowerSystem.SLOT_NAMES[transform.GetSiblingIndex()];
 
         powerSystem.equipment.AddItem(slot, battery.InventoryItem);
-        battery.InventoryItem.container = powerSystem.equipment;
         
         powerSourceData.defaultBatteryCreated = true;
     }

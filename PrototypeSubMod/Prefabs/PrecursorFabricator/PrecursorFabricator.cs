@@ -25,9 +25,10 @@ internal class PrecursorFabricator
         prefabInfo = PrefabInfo.WithTechType("ProtoPrecursorFabricator");
 
         prefab = new CustomPrefab(prefabInfo);
-
+        var purpleIcon = SpriteManager.Get(TechType.PrecursorKey_Purple);
+        
         prefab.CreateFabricator(out CraftTree.Type fabType)
-            .AddTabNode("Keys", Language.main.Get("ProtoPrecursorFabricator_Tab_Keys"), SpriteManager.Get(TechType.PrecursorKey_Purple))
+            .AddTabNode("Keys", Language.main.Get("ProtoPrecursorFabricator_Tab_Keys"), purpleIcon)
             .AddCraftNode(TechType.PrecursorKey_Purple, "Keys")
             .AddCraftNode(TechType.PrecursorKey_Blue, "Keys")
             .AddCraftNode(TechType.PrecursorKey_Orange, "Keys")

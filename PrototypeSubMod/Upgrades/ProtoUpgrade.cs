@@ -79,7 +79,6 @@ internal abstract class ProtoUpgrade : MonoBehaviour, IProtoUpgrade, IAbilityIco
 
     public virtual Sprite GetSprite()
     {
-        var atlasSprite = SpriteManager.Get(techType.TechType);
-        return SpriteConverter.SpriteFromAtlasSprite(atlasSprite);
+        return SpriteManager.Get(techType.TechType);
     }
 }
