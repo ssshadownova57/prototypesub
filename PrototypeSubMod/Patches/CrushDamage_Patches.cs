@@ -16,15 +16,28 @@ public class CrushDamage_Patches
             .MatchForward(true, match)
             .Advance(1)
             .InsertAndAdvance(new CodeInstruction(OpCodes.Ldarg_0))
-            .InsertAndAdvance(Transpilers.EmitDelegate(DontAllowDepthUpdate));
+            .InsertAndAdvance(Transpilers.EmitDelegate(AllowDepthUpdate));
+
+        foreach (var item in matcher.InstructionEnumeration())
+        {
+            Plugin.Logger.LogInfo($"{item.opcode} {item.operand}");
+        }
         
         return matcher.InstructionEnumeration();
     }
 
-    public static bool DontAllowDepthUpdate(bool prevValue, CrushDamage crushDamage)
+    public static bool AllowDepthUpdate(bool prevValue, CrushDamage crushDamage)
     {
-        if (!crushDamage.transform.parent) return prevValue;
+        if (crushDamage.transform.parent == null)
+        {
+            return prevValue;
+        }
 
-        return crushDamage.transform.parent.name != "ProtoVehicleHolder";
+        if (crushDamage.transform.parent.name == "ProtoVehicleHolder")
+        {
+            return true;
+        }
+        
+        return prevValue;
     }
 }
