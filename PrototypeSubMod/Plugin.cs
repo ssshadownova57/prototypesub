@@ -131,8 +131,8 @@ namespace PrototypeSubMod
             // Register harmony patches, if there are any
             harmony.PatchAll(Assembly);
 
-            UWE.CoroutineHost.StartCoroutine(LoadAudioAsync());
-            UWE.CoroutineHost.StartCoroutine(LoadScenesBundle());
+            StartCoroutine(LoadAudioAsync());
+            StartCoroutine(LoadScenesBundle());
 
             var databaseSW = new System.Diagnostics.Stopwatch();
             databaseSW.Start();
@@ -159,9 +159,9 @@ namespace PrototypeSubMod
             miscSW.Stop();
             Logger.LogInfo($"Miscellaneous items registered in {miscSW.ElapsedMilliseconds}ms");
             
-            CoroutineHost.StartCoroutine(Initialize());
-            CoroutineHost.StartCoroutine(MakeSeaTreaderBlockersPassthrough());
-            CoroutineHost.StartCoroutine(LazyInitialize());
+            StartCoroutine(Initialize());
+            StartCoroutine(MakeSeaTreaderBlockersPassthrough());
+            StartCoroutine(LazyInitialize());
 
             var recipeData = CraftDataHandler.GetRecipeData(TechType.RocketStage3);
             for (int i = 0; i < recipeData.ingredientCount; i++)
@@ -326,8 +326,8 @@ namespace PrototypeSubMod
         {
             if (scene.name != "MenuEnvironment") return;
 
-            CoroutineHost.StartCoroutine(EnsureBatteryComponents());
-            CoroutineHost.StartCoroutine(RemoveGuardianPrefab());
+            StartCoroutine(EnsureBatteryComponents());
+            StartCoroutine(RemoveGuardianPrefab());
         }
 
         private IEnumerator RemoveGuardianPrefab()
@@ -378,7 +378,7 @@ namespace PrototypeSubMod
                 DestroyImmediate(worldObject.GetComponent<TechTag>());
                 MaterialUtils.ApplySNShaders(worldObject);
 
-                UWE.CoroutineHost.StartCoroutine(ProtoMatDatabase.ReplaceVanillaMats(worldObject));
+                StartCoroutine(ProtoMatDatabase.ReplaceVanillaMats(worldObject));
                 
                 return worldObject;
             }
@@ -454,6 +454,9 @@ namespace PrototypeSubMod
 
         private IEnumerator MakeSeaTreaderBlockersPassthrough()
         {
+            yield return new WaitUntil(() => WaitScreen.main);
+            
+            CraftData.PreparePrefabIDCache();
             var task = PrefabDatabase.GetPrefabAsync("626f6739-acb0-4dfc-bbab-9b627767403c");
             yield return task;
 
