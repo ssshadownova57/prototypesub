@@ -3,6 +3,7 @@ using PrototypeSubMod.Patches;
 using PrototypeSubMod.Utility;
 using System.Collections;
 using PrototypeSubMod.Prefabs;
+using PrototypeSubMod.Teleporter;
 using UnityEngine;
 
 namespace PrototypeSubMod.Facilities.Interceptor;
@@ -15,7 +16,6 @@ internal class InterceptorIslandManager : MonoBehaviour
     [SerializeField] private ProtoUpgradeCategory interceptorCategory;
     [SerializeField] private PrecursorTeleporter teleporter;
     [SerializeField] private GameObject islandObjects;
-    [SerializeField] private DummyTechType emergencyWarpTechType;
     [SerializeField] private Transform respawnPoint;
 
     private Vector3 voidTeleportPos;
@@ -86,6 +86,10 @@ internal class InterceptorIslandManager : MonoBehaviour
             GUIController_Patches.SetDenyHideCycling(true);
 
             yield return new WaitForSeconds(1f);
+        }
+        else if (!TeleporterOverride.QueuedTeleportedBackToSub)
+        {
+            Player.main.SetPrecursorOutOfWater(true);
         }
 
         SetIslandEnabled(false);

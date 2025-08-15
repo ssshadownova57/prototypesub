@@ -17,11 +17,6 @@ public class CrushDamage_Patches
             .Advance(1)
             .InsertAndAdvance(new CodeInstruction(OpCodes.Ldarg_0))
             .InsertAndAdvance(Transpilers.EmitDelegate(AllowDepthUpdate));
-
-        foreach (var item in matcher.InstructionEnumeration())
-        {
-            Plugin.Logger.LogInfo($"{item.opcode} {item.operand}");
-        }
         
         return matcher.InstructionEnumeration();
     }

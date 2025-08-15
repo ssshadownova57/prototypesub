@@ -73,21 +73,31 @@ internal class TeleporterOverride : MonoBehaviour
         Initialize();
     }
 
-    private void OnEnable() => OnTeleportStart += TargetTeleporterCheck;
+    private void OnEnable()
+    {
+        OnTeleportStart += TargetTeleporterCheck;
+        Initialize();
+    }
+    
     private void OnDisable() => OnTeleportStart -= TargetTeleporterCheck;
 
     public void Initialize()
     {
-        //This stuff may look weird but remember that the portal is only loaded in when it's being teleported to, so this is called when it's loaded in
+        // This stuff may look weird but remember that the portal is only loaded in when it's being teleported to, so this is called when it's loaded in
 
         teleporter = GetComponent<PrecursorTeleporter>();
-        originalTeleportPosition = teleporter.warpToPos;
-        originalTeleportAngle = teleporter.warpToAngle;
-
+        if (originalTeleportPosition == Vector3.zero)
+        {
+            originalTeleportPosition = teleporter.warpToPos;
+            originalTeleportAngle = teleporter.warpToAngle;
+        }
+        
         teleporterID = teleporter.teleporterIdentifier + (IsTeleporterHost(teleporter.teleporterIdentifier) ? "M" : "S");
 
         if (teleporterID != FullOverrideTeleporterID) return;
 
+        if (overrideActive) return;
+        
         UWE.CoroutineHost.StartCoroutine(WaitToPlayFirstStatus());
         
         float timeLeft = TimeWhenPortalUnloaded - Time.time + TimeLeftWhenUnloaded;
@@ -196,14 +206,17 @@ internal class TeleporterOverride : MonoBehaviour
 
     public void BeginTeleportPlayer(GameObject _)
     {
-        if (overrideActive)
-        {
-            QueuedTeleportedBackToSub = true;
-            Player.main.SetPrecursorOutOfWater(false);
+        if (!overrideActive) return;
+        
+        QueuedTeleportedBackToSub = true;
+        overrideActive = false;
+        Player.main.SetPrecursorOutOfWater(false);
 
-            var teleportManager = Camera.main.GetComponent<ProtoScreenTeleporterFXManager>();
-            teleportManager.SetColors(ProtoTeleporterManager.TeleportScreenColInner, ProtoTeleporterManager.TeleportScreenColMiddle, ProtoTeleporterManager.TeleportScreenColOuter);
-        }
+        teleporter.warpToPos = originalTeleportPosition;
+        teleporter.warpToAngle = originalTeleportAngle;
+        
+        var teleportManager = Camera.main.GetComponent<ProtoScreenTeleporterFXManager>();
+        teleportManager.SetColors(ProtoTeleporterManager.TeleportScreenColInner, ProtoTeleporterManager.TeleportScreenColMiddle, ProtoTeleporterManager.TeleportScreenColOuter);
     }
 
     // Called in PrecursorTeleporterActivationTerminal via BroadcastMessage
