@@ -33,7 +33,7 @@ using UWE;
 namespace PrototypeSubMod
 {
     [BepInPlugin(GUID, pluginName, versionString)]
-    [BepInDependency("com.snmodding.nautilus", "1.0.0.40")]
+    [BepInDependency("com.snmodding.nautilus", "1.0.0.43")]
     [BepInDependency("com.indigocoder.sublibrary", "1.7.5")]
     [BepInDependency("ArchitectsLibrary", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.lee23.theredplague", BepInDependency.DependencyFlags.SoftDependency)]
@@ -43,7 +43,7 @@ namespace PrototypeSubMod
     {
         private const string GUID = "com.prototech.prototypesub";
         private const string pluginName = "Prototype Sub";
-        private const string versionString = "1.0.5";
+        private const string versionString = "1.0.6";
 
         public new static ManualLogSource Logger { get; private set; }
 
