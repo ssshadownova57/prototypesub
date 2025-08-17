@@ -245,6 +245,9 @@
   // Engine Lever
   "ProtoEngineLeverEnable": "Start ion reactor",
   "ProtoEngineLeverDisable": "Shut down ion reactor",
+  
+  // HUD
+  "ProtoToggleStrafe": "Toggle strafe",
 
   // Voice Notifications
   "Proto_AbandonShip": "{0}: Warning: Critical hull failure! Pressure destabilizing! Abandon ship!",
