@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Nautilus.Handlers;
@@ -27,6 +28,16 @@ public class Structure
     {
         return JsonConvert.DeserializeObject<Structure>(Plugin.AssetBundle.LoadAsset<TextAsset>(fileName).text);
     }
+
+    public static IEnumerator RegisterFromBundle(string fileName)
+    {
+        var assetOp = Plugin.AssetBundle.LoadAssetAsync(fileName);
+        yield return assetOp;
+        var text = (assetOp.asset as TextAsset).text;
+        var structure = JsonConvert.DeserializeObject<Structure>(text);
+
+        yield return structure.RegisterStructure(20);
+    }
     
     public void SortByPriority()
     {
@@ -44,18 +55,41 @@ public static class StructureExtensions
         structure.SortByPriority();
         foreach (var entity in structure.Entities)
         {
-            if (string.IsNullOrEmpty(entity.classId)) continue;
-            
-            if (registeredIds.Contains(entity.id)) continue;
-            
-            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(entity.classId, entity.position.ToVector3(),
-                entity.rotation.ToQuaternion(), entity.scale.ToVector3(),
-                (obj) =>
-                {
-                    obj.GetComponent<UniqueIdentifier>().Id = entity.id;
-                }));
-
-            registeredIds.Add(entity.id);
+            RegisterEntity(entity);
         }
+    }
+
+    public static IEnumerator RegisterStructure(this Structure structure, int entitiesPerFrame)
+    {
+        structure.SortByPriority();
+        yield return new WaitForEndOfFrame();
+
+        int entityCount = 0;
+        foreach (var entity in structure.Entities)
+        {
+            RegisterEntity(entity);
+            entityCount++;
+            if (entityCount > entitiesPerFrame)
+            {
+                entityCount = 0;
+                yield return new WaitForEndOfFrame();
+            }
+        }
+    }
+
+    public static void RegisterEntity(this Entity entity)
+    {
+        if (string.IsNullOrEmpty(entity.classId)) return;
+            
+        if (registeredIds.Contains(entity.id)) return;
+            
+        CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(entity.classId, entity.position.ToVector3(),
+            entity.rotation.ToQuaternion(), entity.scale.ToVector3(),
+            (obj) =>
+            {
+                obj.GetComponent<UniqueIdentifier>().Id = entity.id;
+            }));
+
+        registeredIds.Add(entity.id);
     }
 }

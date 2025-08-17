@@ -1,4 +1,5 @@
-﻿using PrototypeSubMod.Prefabs;
+﻿using System.Collections;
+using PrototypeSubMod.Prefabs;
 using PrototypeSubMod.Prefabs.AlienBuildingBlock;
 using PrototypeSubMod.Prefabs.FacilityProps;
 using PrototypeSubMod.Prefabs.FacilityProps.Hull;
@@ -10,7 +11,7 @@ namespace PrototypeSubMod.Registration;
 
 internal static class PrefabRegisterer
 {
-    public static void Register()
+    public static IEnumerator Register()
     {
         var sw = new System.Diagnostics.Stopwatch();
         sw.Start();
@@ -19,16 +20,24 @@ internal static class PrefabRegisterer
         AlienBuildingBlock.Register();
         PrecursorIngot_Craftable.Register();
         IonPrism_Craftable.Register();
+
+        yield return new WaitForEndOfFrame();
         
         Prototype_Craftable.Register();
         ProtoBuildTerminal_World.Register();
         DeployableLight_Craftable.Register();
+        
+        yield return new WaitForEndOfFrame();
+        
         ListeningDevice_Craftable.Register();
         ProtoRepairBot_Spawned.Register();
         DeactivatedTeleporter_World.Register();
         ProtoEngineFacilityRoom.Register();
         PrecursorCross.Register();
         PrecursorRadio.Register();
+        
+        yield return new WaitForEndOfFrame();
+        
         InterceptorFacilityKey.Register();
         DefenseStoryGoalTrigger_World.Register();
         DecorativeForceFieldArchway.Register();
@@ -38,6 +47,9 @@ internal static class PrefabRegisterer
         HullFacilityKey.Register();
         DefenseFacilityKey.Register();
         EngineFacilityKey.Register();
+        
+        yield return new WaitForEndOfFrame();
+        
         HullOutpostTeleporter.Register();
         ObstructionRockLoadFar.Register();
         PrototypeSpawner.Register();
@@ -46,6 +58,8 @@ internal static class PrefabRegisterer
         ProtoFacilitySpawner.Register("ProtoHullFacilitySpawner", "HullFacilitySpawner");
         ProtoFacilitySpawner.Register("ProtoEngineFacilitySpawner", "EngineFacilitySpawner");
         ProtoFacilitySpawner.Register("ProtoDefenseFacilitySpawner", "DefenseFacilitySpawner");
+        
+        yield return new WaitForEndOfFrame();
         
         PrecursorFabricator.Register();
         PrecursorPhaseGate.Register();
@@ -57,6 +71,8 @@ internal static class PrefabRegisterer
         StoryGoalTerminal.CreateTerminal("AnimateEntropyTerminal", "AnimateEntropyTerminalEncy");
         StoryGoalTerminal.CreateTerminal("FragmentationTerminal", "FragmentationTerminalEncy");
 
+        yield return new WaitForEndOfFrame();
+        
         NonScanWaterPipe.Register();
         WatergateBlock.Register();
         ProtoPlaque_World.Register();
@@ -64,6 +80,9 @@ internal static class PrefabRegisterer
         DamagedProtoLogo_World.Register();
         TeleporterTerminal_World.Register();
         SmashedDisplayCase_World.Register();
+        
+        yield return new WaitForEndOfFrame();
+        
         NonScannableProp.Register("11e731e7-bc82-4f94-90be-5db7b58b449b", "EmptyDisplayCase");
         NonScannableProp.Register("4f5905f8-ea50-49e8-b24f-44139c6bddcf", "PrecursorScannerArmNoScan1");
         NonScannableProp.Register("ebc943e4-200c-4789-92f3-e675cd982dbe", "PrecursorScannerArmNoScan2");
@@ -80,6 +99,8 @@ internal static class PrefabRegisterer
         KinematicPrefabClone.Register("38ebd2e5-9dcc-4d7a-ada4-86a22e01191a", "KinematicIonCrystal");
         KinematicPrefabClone.Register("f90d7d3c-d017-426f-af1a-62ca93fae22e", "KinematicIonCrystalMatrix");
 
+        yield return new WaitForEndOfFrame();
+        
         GrayRock01.Register();
         PrecursorCube1Prop.Register();
         PrecursorGunProp.Register();

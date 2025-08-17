@@ -24,13 +24,6 @@ internal class WarperRemnant : RelicBlock
     {
         CraftData.PreparePrefabIDCache();
         yield return new WaitForEndOfFrame();
-        
-        var returnPrefab = Plugin.AssetBundle.LoadAsset<GameObject>("WarperRemnant");
-        
-        if(returnPrefab == null)
-            Plugin.Logger.LogError("Failed to load the WarperRemnant prefab.");
-
-        var instance = UWE.Utils.InstantiateDeactivated(returnPrefab);
 
         var task = PrefabDatabase.GetPrefabAsync("09bc9a07-7680-4ddf-9ba2-a7da5e7b3287");
         yield return task;
@@ -40,6 +33,13 @@ internal class WarperRemnant : RelicBlock
             Plugin.Logger.LogError("Failed to load the RelicBlock prefab.");
             yield break;
         }
+        
+        var returnPrefab = Plugin.AssetBundle.LoadAsset<GameObject>("WarperRemnant");
+        
+        if(returnPrefab == null)
+            Plugin.Logger.LogError("Failed to load the WarperRemnant prefab.");
+
+        var instance = UWE.Utils.InstantiateDeactivated(returnPrefab);
         
         var meshRenderer = relicBlock.GetComponentInChildren<MeshRenderer>(true);
         meshRenderer.gameObject.SetActive(true);

@@ -287,7 +287,7 @@ namespace PrototypeSubMod
             
             Logger.LogDebug($"Set ping type");
             
-            PrefabRegisterer.Register();
+            yield return PrefabRegisterer.Register();
             Logger.LogDebug($"Loaded normal prefabs");
             yield return LoadEasyPrefabs.LoadPrefabs(AssetBundle, EncyEntryRegisterer.Register, GC.Collect, GC.WaitForPendingFinalizers);
             Logger.LogDebug($"Loaded easy prefabs");

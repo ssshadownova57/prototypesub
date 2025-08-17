@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Newtonsoft.Json;
 using PrototypeSubMod.Compatibility;
 using PrototypeSubMod.StructureLoading;
@@ -8,34 +9,34 @@ namespace PrototypeSubMod.Registration;
 
 internal static class StructureRegisterer
 {
-    public static void Register()
+    public static IEnumerator Register()
     {
         var sw = new System.Diagnostics.Stopwatch();
         sw.Start();
         
-        Structure.LoadFromBundle("DefenseTunnel").RegisterStructure();
-        Structure.LoadFromBundle("EngineFacilityObjects").RegisterStructure();
-        Structure.LoadFromBundle("EngineFacilityAdditions").RegisterStructure();
-        Structure.LoadFromBundle("EngineFacilityExteriorObjects").RegisterStructure();
-        Structure.LoadFromBundle("DefenseMoonpool").RegisterStructure();
-        Structure.LoadFromBundle("ProtoItemDisplayCases").RegisterStructure();
-        Structure.LoadFromBundle("ProtoIslands").RegisterStructure();
-        Structure.LoadFromBundle("ProtoWarpCore").RegisterStructure();
-        Structure.LoadFromBundle("DefenseFacilityDebris").RegisterStructure();
-        Structure.LoadFromBundle("HullFacilityOutpost").RegisterStructure();
-        Structure.LoadFromBundle("PrecursorFabricators").RegisterStructure();
-        Structure.LoadFromBundle("HullFacilityObjects").RegisterStructure();
-        Structure.LoadFromBundle("HullFacilityTunnelExtras").RegisterStructure();
-        Structure.LoadFromBundle("HullFacilityKeyResources").RegisterStructure();
-        Structure.LoadFromBundle("ProtoHullCave").RegisterStructure();
-        Structure.LoadFromBundle("DefenseFacilityTeleporterRoomExteriorObjects").RegisterStructure();
-        Structure.LoadFromBundle("DefenseFacilityTeleporterRoomInteriorObjects").RegisterStructure();
-        Structure.LoadFromBundle("QEPRemnantSpawns").RegisterStructure();
-        Structure.LoadFromBundle("EngineFacilityRemnant").RegisterStructure();
+        yield return Structure.RegisterFromBundle("DefenseTunnel");
+        yield return Structure.RegisterFromBundle("EngineFacilityObjects");
+        yield return Structure.RegisterFromBundle("EngineFacilityAdditions");
+        yield return Structure.RegisterFromBundle("EngineFacilityExteriorObjects");
+        yield return Structure.RegisterFromBundle("DefenseMoonpool");
+        yield return Structure.RegisterFromBundle("ProtoItemDisplayCases");
+        yield return Structure.RegisterFromBundle("ProtoIslands");
+        yield return Structure.RegisterFromBundle("ProtoWarpCore");
+        yield return Structure.RegisterFromBundle("DefenseFacilityDebris");
+        yield return Structure.RegisterFromBundle("HullFacilityOutpost");
+        yield return Structure.RegisterFromBundle("PrecursorFabricators");
+        yield return Structure.RegisterFromBundle("HullFacilityObjects");
+        yield return Structure.RegisterFromBundle("HullFacilityTunnelExtras");
+        yield return Structure.RegisterFromBundle("HullFacilityKeyResources");
+        yield return Structure.RegisterFromBundle("ProtoHullCave");
+        yield return Structure.RegisterFromBundle("DefenseFacilityTeleporterRoomExteriorObjects");
+        yield return Structure.RegisterFromBundle("DefenseFacilityTeleporterRoomInteriorObjects");
+        yield return Structure.RegisterFromBundle("QEPRemnantSpawns");
+        yield return Structure.RegisterFromBundle("EngineFacilityRemnant");
 
         if (TRPCompatManager.TRPInstalled)
         {
-            Structure.LoadFromBundle("RedPlagueProtoIslands").RegisterStructure();
+            yield return Structure.RegisterFromBundle("RedPlagueProtoIslands");
         }
 
         sw.Stop();

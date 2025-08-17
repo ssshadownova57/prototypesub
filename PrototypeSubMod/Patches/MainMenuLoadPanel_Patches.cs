@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System.IO;
+using HarmonyLib;
 using PrototypeSubMod.SaveData;
 using PrototypeSubMod.SaveIcon;
 using UnityEngine;
@@ -24,11 +25,13 @@ internal class MainMenuLoadPanel_Patches
             protoIcon.SetActive(false);
         }
 
-        SaveSlotManager.SaveSlotContainsData(lb.saveGame, "PrototypeSubMod\\PrototypeSubMod.json", (bool success, ProtoGlobalSaveData saveData) =>
+        void OnComplete(bool success, ProtoGlobalSaveData saveData)
         {
             if (!success) return;
 
             protoIcon.SetActive(saveData.prototypePresent);
-        });
+        }
+        
+        SaveSlotManager.SaveSlotContainsData<ProtoGlobalSaveData>(lb.saveGame, Path.Combine("PrototypeSubMod", "PrototypeSubMod.json"), OnComplete);
     }
 }
