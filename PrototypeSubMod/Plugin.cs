@@ -310,7 +310,7 @@ namespace PrototypeSubMod
             Logger.LogDebug($"Setup power source prefabs");
             PrefabsInitialized = true;
             
-            StructureRegisterer.Register();
+            yield return StructureRegisterer.Register();
             StructuresRegistered = true;
             
             Logger.LogDebug($"Structures registered");

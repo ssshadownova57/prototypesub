@@ -89,8 +89,6 @@ internal class InterceptorReactorSequenceManager : MonoBehaviour
         InterceptorIslandManager.Instance.UpdateSeaglideLights(false);
         UWE.CoroutineHost.StartCoroutine(TeleportBackAfterDuration());
         Player_Patches.SetOxygenReqOverride(true, 0);
-
-        LargeWorldStreamer_Patches.SetOverwriteCamPos(true, MostRecentReturnPos);
     }
 
     private static IEnumerator TeleportBackAfterDuration()
@@ -120,10 +118,11 @@ internal class InterceptorReactorSequenceManager : MonoBehaviour
         WeatherCompatManager.SetWeatherEnabled(false);
         WeatherCompatManager.SetWeatherClear();
 
-        InterfloorTeleporter.PlayTeleportEffect(5f);
+        InterfloorTeleporter.PlayTeleportEffect(4f);
 
         yield return new WaitForSeconds(0.5f);
 
+        LargeWorldStreamer_Patches.SetOverwriteCamPos(true, MostRecentReturnPos);
         Player.main.cinematicModeActive = true;
         Player.main.playerController.inputEnabled = false;
         Inventory.main.quickSlots.SetIgnoreHotkeyInput(true);

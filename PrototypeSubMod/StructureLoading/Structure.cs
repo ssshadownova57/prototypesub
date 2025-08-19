@@ -31,10 +31,8 @@ public class Structure
 
     public static IEnumerator RegisterFromBundle(string fileName)
     {
-        var assetOp = Plugin.AssetBundle.LoadAssetAsync(fileName);
-        yield return assetOp;
-        var text = (assetOp.asset as TextAsset).text;
-        var structure = JsonConvert.DeserializeObject<Structure>(text);
+        var assetOp = Plugin.AssetBundle.LoadAsset<TextAsset>(fileName);
+        var structure = JsonConvert.DeserializeObject<Structure>(assetOp.text);
 
         yield return structure.RegisterStructure(20);
     }
